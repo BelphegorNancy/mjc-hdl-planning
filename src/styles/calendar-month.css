@@ -1,0 +1,37 @@
+.month-view {
+  @apply w-full h-full;
+}
+
+.month-view .grid {
+  @apply border border-gray-200;
+}
+
+.month-view .grid > div {
+  @apply border-b border-r border-gray-200 relative;
+}
+
+.month-view .grid > div:hover {
+  @apply bg-gray-50;
+}
+
+.month-view .grid > div:last-child {
+  @apply border-r-0;
+}
+
+.month-view .grid > div:nth-last-child(-n+7) {
+  @apply border-b-0;
+}
+
+/* Styles pour les réservations */
+.month-view .reservation {
+  @apply text-xs mb-1 p-1 rounded cursor-pointer;
+  @apply transition-colors duration-200;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.month-view .reservation:hover {
+  @apply bg-blue-200;
+}

@@ -1,0 +1,30 @@
+FROM node:20
+
+WORKDIR /app
+
+# Installer les dépendances système nécessaires
+RUN apt-get update && apt-get install -y sqlite3 && rm -rf /var/lib/apt/lists/*
+
+# Créer le répertoire des données et définir les permissions
+RUN mkdir -p /app/data && chown -R node:node /app/data && chmod 755 /app/data
+
+# Copier les fichiers de dépendances
+COPY package*.json ./
+
+# Installer les dépendances
+RUN npm ci
+
+# Copier le reste des fichiers
+COPY . .
+
+# Changer le propriétaire de tous les fichiers
+RUN chown -R node:node /app
+
+# Utiliser l'utilisateur node pour plus de sécurité
+USER node
+
+# Exposer le port
+EXPOSE 3000
+
+# Démarrer l'application
+CMD ["npm", "start"]

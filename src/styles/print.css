@@ -1,0 +1,234 @@
+@media print {
+  /* Configuration de base */
+  @page {
+    size: A3 landscape;
+    margin: 0.3cm;
+  }
+
+  /* Styles du titre */
+  .pdf-title {
+    margin-bottom: 0.3cm !important;
+  }
+
+  .pdf-title h1 {
+    font-size: 18pt !important;
+    font-weight: bold !important;
+    margin-bottom: 0.1cm !important;
+    color: black !important;
+  }
+
+  .pdf-title .text-xl {
+    font-size: 12pt !important;
+    color: #333333 !important;
+  }
+
+  /* Conteneur principal */
+  .calendar-grid {
+    width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid !important;
+    display: grid !important;
+    grid-template-columns: repeat(8, 1fr) !important;
+    gap: 0 !important;
+    background-color: white !important;
+    transform: scale(0.85) !important;
+    transform-origin: top center !important;
+  }
+
+  /* En-têtes */
+  .calendar-header {
+    background-color: #e0e0e0 !important;
+    color: black !important;
+    border: 1px solid #000 !important;
+    font-size: 6pt !important;
+    text-align: center !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    line-height: 1 !important;
+  }
+
+  /* Cellules des créneaux horaires */
+  .time-slot {
+    border: 1px solid #000 !important;
+    padding: 0 !important;
+    font-size: 5pt !important;
+    line-height: 1 !important;
+    background-color: white !important;
+    min-height: 8px !important;
+    height: 8px !important;
+  }
+
+  /* Réservations */
+  .reservation {
+    background-color: #f0f0f0 !important;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 5pt !important;
+    line-height: 1 !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  /* Colonne des heures */
+  .time-column {
+    font-size: 5pt !important;
+    color: black !important;
+    text-align: right !important;
+    padding-right: 1px !important;
+    width: auto !important;
+  }
+
+  /* Forcer une seule page */
+  .calendar-container {
+    max-height: 100% !important;
+    overflow: hidden !important;
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
+    page-break-inside: avoid !important;
+    transform: scale(0.85) !important;
+    transform-origin: top center !important;
+  }
+
+  /* Suppression des effets de survol */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Cacher les éléments non essentiels */
+  .controls,
+  nav,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Réduire la hauteur des lignes */
+  .grid {
+    line-height: 1 !important;
+  }
+
+  /* Forcer les dimensions minimales */
+  * {
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Améliorer la visibilité des cartouches */
+  .shadow-sm {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  }
+
+  /* Renforcer les bordures des cellules du calendrier */
+  .border,
+  .border-t,
+  .border-b,
+  .border-l,
+  .border-r {
+    border-color: rgba(0, 0, 0, 0.3) !important;
+    border-width: 1px !important;
+  }
+
+  /* Styles spécifiques pour la vue liste */
+  .bg-white {
+    background-color: white !important;
+    border: 1px solid #000 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  /* Renforcer la bordure gauche colorée */
+  [style*="border-left-color"] {
+    border-left-width: 6px !important;
+  }
+
+  /* Ajouter une ligne de séparation entre les jours */
+  h3.font-medium {
+    border-bottom: 2px solid #000 !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Augmenter l'espacement entre les réservations */
+  .space-y-2 > * {
+    margin-bottom: 12px !important;
+  }
+
+  /* Cacher le bouton d'export PDF */
+  .print\:hidden,
+  button[class*="print:hidden"],
+  [class*="print:hidden"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  /* Styles pour la vue liste */
+  .calendar-list-container {
+    padding: 20px !important;
+  }
+
+  .calendar-list-container h1 {
+    font-size: 18pt !important;
+    margin-bottom: 8px !important;
+    letter-spacing: 0 !important;
+    word-spacing: normal !important;
+    white-space: normal !important;
+    text-rendering: optimizeLegibility !important;
+  }
+
+  .calendar-list-container h3 {
+    font-size: 14pt !important;
+    letter-spacing: 0 !important;
+    word-spacing: normal !important;
+    white-space: normal !important;
+    text-rendering: optimizeLegibility !important;
+    margin: 16px 0 8px 0 !important;
+  }
+
+  .calendar-list-container .text-sm {
+    font-size: 12pt !important;
+    letter-spacing: 0 !important;
+    word-spacing: normal !important;
+  }
+
+  .pdf-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 18pt !important;
+    font-weight: bold !important;
+    margin-bottom: 8px !important;
+    letter-spacing: 0.5px !important;
+    word-spacing: 4px !important;
+    white-space: pre-wrap !important;
+  }
+
+  .pdf-date {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 14pt !important;
+    font-weight: 500 !important;
+    margin: 16px 0 8px 0 !important;
+    letter-spacing: 0.5px !important;
+    word-spacing: 4px !important;
+    white-space: pre-wrap !important;
+  }
+
+  .calendar-list-container * {
+    font-kerning: none !important;
+    font-feature-settings: normal !important;
+    text-rendering: geometricPrecision !important;
+    -webkit-font-smoothing: subpixel-antialiased !important;
+  }
+
+  /* Force le texte à s'afficher normalement */
+  * {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-feature-settings: "kern" 1 !important;
+    font-kerning: normal !important;
+    letter-spacing: 0 !important;
+    word-spacing: normal !important;
+  }
+}

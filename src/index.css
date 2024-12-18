@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-red-600 text-white hover:bg-red-700;
+  }
+
+  .btn-secondary {
+    @apply border border-gray-300 hover:bg-gray-50;
+  }
+}
+
+@media print {
+  @page {
+    margin: 0.5cm;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .print-preview {
+    padding: 0;
+    margin: 0;
+  }
+
+  .print-preview.a4.portrait {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .print-preview.a4.landscape {
+    width: 297mm;
+    height: 210mm;
+  }
+
+  .print-preview.a3.portrait {
+    width: 297mm;
+    height: 420mm;
+  }
+
+  .print-preview.a3.landscape {
+    width: 420mm;
+    height: 297mm;
+  }
+
+  .print-hidden,
+  .print:hidden {
+    display: none !important;
+  }
+
+  nav,
+  button:not(.print-show),
+  select,
+  .shadow-lg,
+  .shadow-md {
+    display: none !important;
+  }
+
+  .container {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .bg-white {
+    background-color: white !important;
+    box-shadow: none !important;
+  }
+}

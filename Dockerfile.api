@@ -1,0 +1,29 @@
+FROM node:20
+
+WORKDIR /app
+
+# Installer SQLite
+RUN apt-get update && apt-get install -y sqlite3 && rm -rf /var/lib/apt/lists/*
+
+# Créer le dossier de données avec les bonnes permissions
+RUN mkdir -p /app/data && chown -R node:node /app/data && chmod 755 /app/data
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Changer le propriétaire de tous les fichiers
+RUN chown -R node:node /app
+
+USER node
+
+# Expose port
+EXPOSE 3000
+
+# Start the server using ts-node directly
+CMD ["npm", "run", "start"]

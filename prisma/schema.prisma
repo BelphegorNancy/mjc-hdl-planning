@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  role      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  createdRooms      Room[]        @relation("RoomCreator")
+  createdActivities Activity[]    @relation("ActivityCreator")
+  reservations      Reservation[] @relation("ReservationCreator")
+}
+
+model Room {
+  id               String   @id @default(uuid())
+  name             String
+  capacity         Int
+  color            String?
+  equipment        String[]
+  description      String?
+  currentOccupancy Int?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  createdBy   String
+  creator     User          @relation("RoomCreator", fields: [createdBy], references: [id])
+  reservations Reservation[]
+}
+
+model Activity {
+  id           String   @id @default(uuid())
+  name         String
+  description  String?
+  requirements String[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  createdBy    String
+  creator      User          @relation("ActivityCreator", fields: [createdBy], references: [id])
+  reservations Reservation[]
+}
+
+model Reservation {
+  id          String   @id @default(uuid())
+  title       String?
+  startTime   DateTime
+  endTime     DateTime
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  roomId      String
+  room        Room     @relation(fields: [roomId], references: [id])
+  activityId  String
+  activity    Activity @relation(fields: [activityId], references: [id])
+  createdBy   String
+  creator     User     @relation("ReservationCreator", fields: [createdBy], references: [id])
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  action    String
+  entityType String
+  entityId  String
+  userId    String
+  details   String
+  timestamp DateTime @default(now())
+}
